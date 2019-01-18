@@ -22,12 +22,12 @@ MongoClient.connect('mongodb://localhost:27017/TodoApp', (err, db) => {
   // })
 
   // db.collection('Users').deleteMany({name: 'Nischal Nayaju'});
-  
-  db.collection('Users').findOneAndDelete({
-    _id: new ObjectID('5c41dc7d0c859b245c3a947c')
-  }).then((results) => {
-    console.log(JSON.stringify(results, undefined, 2))
-  });
+
+  // db.collection('Users').findOneAndDelete({
+  //   _id: new ObjectID('5c41dc7d0c859b245c3a947c')
+  // }).then((results) => {
+  //   console.log(JSON.stringify(results, undefined, 2))
+  // });
 
   // db.close();
 });
