@@ -26,6 +26,9 @@ app.listen(3000, () => {
 });
 // Postman lets you create HTTP request and fire them off, that makes it real easy to test that everything you're writing is working correctly
 
+module.exports = {
+  app
+};
 
 
 
