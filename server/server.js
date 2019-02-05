@@ -26,10 +26,17 @@ app.listen(3000, () => {
 });
 // Postman lets you create HTTP request and fire them off, that makes it real easy to test that everything you're writing is working correctly
 
+app.get('/todos', (req, res) => {
+  Todo.find().then((todos) => {
+    res.send({todos});
+  }, (e) => {
+    res.status(400).send(e);
+  });
+});
+
 module.exports = {
   app
 };
-
 
 
 
