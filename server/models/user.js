@@ -53,6 +53,7 @@ UserSchema.methods.toJSON = function () {
 };
 
 // adds a method called generateAuthToken to UserSchema that supplies token (generated from jwt) to the model
+// instance method
 UserSchema.methods.generateAuthToken = function () {
   var user = this;
   var access = 'auth';
@@ -79,6 +80,27 @@ UserSchema.pre('save', function (next) {
     next();
   }
 });
+
+// model method
+UserSchema.statics.findByToken = function (token) {
+  var User = this;
+  var decoded;
+
+  try{
+    decoded = jwt.verify(token, 'abc123');
+  } catch(e) {
+    // return new Promise((resolve, reject) => {
+    //   reject();
+    // });
+    return Promise.reject();
+  }
+
+  return User.findOne({
+    '_id': decoded._id,
+    'tokens.token': token,
+    'tokens.access': 'auth'
+  });
+};
 
 var User = mongoose.model('User', UserSchema);
 
