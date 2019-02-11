@@ -21,6 +21,8 @@ const users = [{
   password: 'userTwoPass'
 }];
 
+// query the user inside of the database after the call comes back and make sure the token was added
+
 const todos = [{
   _id: new ObjectID(),
   text: 'First test todo'
