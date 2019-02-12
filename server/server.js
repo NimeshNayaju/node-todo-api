@@ -16,7 +16,7 @@ const port = process.env.PORT;
 
 app.use(bodyParser.json());
 
-app.get('/todos', (req, res) => {
+app.get('/todos', (req, res) => { // defining a route
   Todo.find().then((todos) => {
     res.send({todos});
   }, (e) => {
@@ -135,6 +135,17 @@ app.post('/users/login', (req, res) => {
   });
 
 }); 
+
+
+// Logging out the user
+app.delete('/users/me/token', authenticate, (req, res) => {
+  // calling an instance method
+  req.user.removeToken(req.token).then(() => {
+    res.status(200).send();
+  }, () => {
+    res.status(400).send();
+  }); 
+});
 
 app.listen(port, () => {
   console.log(`Starting on port ${port}`);

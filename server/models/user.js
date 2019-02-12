@@ -122,6 +122,19 @@ UserSchema.statics.findByCredentials = function (email, password) {
   });
 };
 
+UserSchema.methods.removeToken = function (token) {
+  var user = this;
+
+  return user.update({
+    // $pull operator removes item from an array that matches the criteria
+    $pull: {
+      tokens: {
+        token
+      }
+    }
+  });
+};
+
 var User = mongoose.model('User', UserSchema);
 
 // var newUser = new User({
